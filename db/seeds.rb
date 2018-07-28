@@ -1,0 +1,1 @@
+User.create!(email:"jenniffer54@yahoo.es" , password: 'password', password_confirmation: , username: "admin" , cell_phone: "244181881", carrier:"impala", landline: "6757643")

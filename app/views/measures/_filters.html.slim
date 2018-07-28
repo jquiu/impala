@@ -1,0 +1,24 @@
+#filter-panel.collapse.filter-panel
+  .panel.panel-default
+    .panel-body
+      = search_form_for @search do |f|
+        .col-md-3
+          label
+            = t('.unit')
+          = f.search_field(:unit_cont, class: 'form-control')
+        .col-md-3
+          br
+          = f.submit :class =>"btn btn btn-primary btn-block"
+        .col-md-3
+          br
+          = link_to t('.clear'), request.path, class:"btn btn-danger btn_white btn-block"
+
+.row 
+  .col-md-6
+    button.btn.btn-primary[type="button" data-toggle="collapse" data-target="#filter-panel" style="margin-bottom: 10px;"]
+      span.fa.fa-filter
+      = t('.filters')
+  .col-md-6
+    .pull-right
+      = link_to new_measure_path, :class => 'btn btn-primary'
+        span.fa.fa-plus-circle

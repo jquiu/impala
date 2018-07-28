@@ -1,0 +1,32 @@
+- model_class = Product
+.page-header
+  ol.breadcrumb
+    li.active
+      i.fa.fa-location-arrow style="margin-right: 10px;"
+      | LISTADO DE PRODUCTOS
+= render(partial: 'products/filters')
+br
+br
+
+table.table.table-striped.table-hover.table-bordered
+  thead
+    tr
+      th=  sort_link @search, :id, "#"
+      th=  sort_link @search, :name, t('.name')
+      th=  sort_link @search, :ref, t('.ref')
+      th=t '.actions', :default => t("helpers.actions")
+      
+  tbody
+    - @products.each do |product|
+      tr
+        td= product.id
+        td= product.name
+        td= product.ref
+        td
+          = link_to edit_product_path(product)
+              span.fa.fa-pencil
+          =  link_to product, data: {:confirm => "Eliminar producto"}, :method => :delete do
+              span.fa.fa-trash-o.delete
+
+= will_paginate @products, :locals => { :products => @products }, renderer: BootstrapPagination::Rails
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ImpalaApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+</head>
+<body>
+	<%- if user_signed_in?%>	
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+	                <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="<%root_path%>" class="navbar-brand"><%= t('.brand')%></a>
+				</div>
+				<div class="navbar-collapse collapse" id="navbar">
+					<ul class="nav navbar-nav">
+							<li class="<%if params[:controller] == 'offers' and !params[:index_2] %> active <%end %>"><a href="<%= root_path%>"><%= t('.home')%></a></li>
+						<%if current_user.rol == "admin" or current_user.rol == "supervicer" %>
+							<li class="<%if params[:controller] == 'users' %> active <%end %>"><a href="<%= users_path(:rol => "provider")%>"><%= t('.provider')%></a></li>
+							<li class="<%if params[:controller] == 'products' %> active <%end %>"><a href="<%= products_path%>"><%= t('.product')%></a></li>
+							<li class="<%if params[:controller] == 'locations' %> active <%end %>"><a href="<%= locations_path%>"><%= t('.location')%></a></li>
+							<li class="<%if params[:controller] == 'measures' %> active <%end %>"><a href="<%= measures_path%>"><%= t('.measures')%></a></li>
+						<%end%>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a data-toggle="dropdown" class="dropdown-toggle avatar pull-right" href="#">
+							<span class="hidden-small"><i class="fa fa-user fa-fw"></i>
+								<i class="fa fa-caret-down"></i></span>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li>
+									<%=link_to(t('.profile'), edit_user_registration_path)%>
+
+								</li>
+								<li>
+									<%=link_to(t('.log_out'), destroy_user_session_path, :method => :delete)%>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<%if current_user.rol == "admin"%>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+						<a data-toggle="dropdown" class="dropdown-toggle pull-right" href="#">
+						<span class="hidden-small"><i class="fa fa-envelope fa-fw"></i>
+						<i class="fa fa-caret-down"></i></span>
+						</a>
+						<ul class="dropdown-menu dropdown-messages">
+							<%Comment.all.each do |comment|%>
+							<li>
+								<a href="<%= comment_path(comment)%>">
+								<div><strong><%= comment.user.name%></strong></div>
+								<div><%= comment.description%></div>
+								</a>
+							</li>
+							<li class="divider"></li>
+							<%end%>
+							<li>
+								<a href="<%= comments_path%>" class="text-center">
+								<strong>Leer todos los mensajes</strong>
+								<i class="fa fa-angle-right"></i>
+								</a>
+							</li>
+						</ul>
+						</li>
+					</ul>
+					<%end%>
+				</div><!--/.nav-collapse -->
+			</div>
+		</nav>
+	<%end%>
+
+	
+	<!-- container -->
+	<div role="main" class="container page-content">
+		<%= render(partial: 'layouts/share') %>
+		<%= yield%>
+	</div> <!-- /container -->
+</body>
+</html>

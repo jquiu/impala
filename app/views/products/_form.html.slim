@@ -1,0 +1,9 @@
+.errors
+= form_for @product,  remote: true do |f|
+    = f.label :Referencia
+    = f.text_field :ref, :class =>"form-control"
+    br
+    = f.label :Nombre
+    = f.text_field :name, :class =>"form-control"
+    br
+    =f.submit :class =>"btn btn-primary btn-block"

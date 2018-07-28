@@ -1,0 +1,79 @@
+<div class="page-header">
+<ol class="breadcrumb">
+    <li class="active">
+        <i style="margin-right: 10px;" class="fa fa-envelope-o"></i>Correo de <%= @comment.user.name%>
+    </li>
+</ol>
+</div>
+<div class="row">
+    <div class="col-lg-3 valign-top">
+        <!-- panel body -->
+        <div class="panel-body" style="padding: 0px;">
+            <!-- Browse -->
+            <h5 class="semibold">Principal</h5>
+            <div class="list-group">
+                <a class="list-group-item" href="<%= comments_path%>"><i class="fa fa-inbox"></i> Recibidos <span class="semibold text-muted pull-right"><%= Comment.all.count%></span></a>
+            </div>
+        </div>
+        <hr>
+        <!--/ panel body -->
+    </div>
+    <div class="col-lg-9">
+        <!-- panel body -->
+        <div class="panel-body">
+            <!-- email list -->
+            <div class="table-responsive nm">
+                <div class="wrapper">
+                    <h4 class="m-b-15 m-t-0 p-b-10 underline"><%= @comment.subject.upcase%></h4>
+                    <hr>
+                    <ul class="media-list underline m-b-20 p-b-15">
+                        <li class="media media-sm clearfix">
+                            <div class="media-body">
+                                <span class="email-from text-inverse f-w-600">
+                                   <strong>De:</strong>  <%= @comment.user.email%>
+                                </span>
+                                <span class="text-muted m-l-5 pull-right"><i class="fa fa-clock-o fa-fw"></i> <%= @comment.created_at.to_formatted_s(:short)%></span>
+                                <br>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="f-s-12 text-inverse"> 
+                        <br>
+                            <%= @comment.description%>
+                        <br>
+                    </p>
+                    --
+                    <p class="f-s-12 text-inverse"><%= @comment.user.name%></p>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                        Responder
+                    </button>
+                </div>
+            </div>
+                <!--/ email list -->
+        </div>
+    </div>
+        <!--/ panel body -->
+</div>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Responder</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag(comments_send_mail_path) do %>
+            <label for="input4">Mensaje </label>
+            <%= hidden_field_tag 'email',   @comment.user.email%>
+            <%= hidden_field_tag 'id',   @comment.id%>
+            <%= text_area_tag 'comments', nil, class: 'form-control', rows: 4%>
+            <br>
+            <%= submit_tag "Enviar" %>
+        <%end%>
+      </div>
+    <div>
+</div>

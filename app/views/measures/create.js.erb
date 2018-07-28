@@ -1,0 +1,6 @@
+<%if @measure.errors.any? %>
+	$('.errors').append('<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <%= @measure.errors.full_messages.to_sentence%></div>');
+<%else%>
+	$('.errors').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong> Se ha creado su nueva Und. medida </strong></div>');
+	$('#measure_unit').val(" ")
+<%end%>

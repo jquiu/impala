@@ -1,0 +1,86 @@
+div
+  = form_for @offer do |f|
+    .form-group
+      label
+        | Tipo de Oferta
+      = f.select :offert_type, [["Tipo Oferta 1", "oferta1"],["Tipo Oferta 2", "oferta2"]], {prompt: "Seleccione Tipo Oferta"}, {class: "form-control"}
+    .form-group
+      label
+        | Carga Compensatoría
+      = f.check_box :load_compensation
+    .row
+      .col-xs-4.col-sm-4.col-md-4
+        .form-group
+          label
+            | Tipo de Producto
+          =  f.collection_select :product, Product.all, :name, :name, {prompt: " "}, {class: "form-control"}
+      .col-xs-4.col-sm-4.col-md-4
+        .form-group
+          label
+            | Origen
+          =  f.collection_select :origins, Location.all, :location, :location, {prompt: " "}, {class: "form-control"}
+      .col-xs-4.col-sm-4.col-md-4
+        .form-group
+          label
+            | Destino
+          =  f.collection_select :destination, Location.all, :location, :location, {prompt: " "}, {class: "form-control"}
+    .row
+      .col-xs-6.col-sm-6.col-md-6
+        .form-group
+          label
+            | Und. Cotización
+          =  f.collection_select :unit, Measure.all, :unit, :unit, {prompt: " "}, {class: "form-control"}
+      .col-xs-6.col-sm-6.col-md-6
+        .form-group
+          label
+            | Volumen Demandado
+          = f.text_field :volumen, class:"form-control"
+          span#errmsg
+    .form-group
+      = f.label :price, :id => "price"
+      = f.text_field :price, class:"form-control"
+      span#errmsg1
+    .row
+      .col-xs-6.col-sm-6.col-md-6
+        .form-group
+          label
+            | Fecha Inicio Servicio
+          = f.text_field :service_start_date,class:"form-control date"
+      .col-xs-6.col-sm-6.col-md-6
+        .form-group
+          label
+            | Fecha Fin Servicio 
+          = f.text_field :service_finish_date, class:"form-control date"
+    .row
+      .col-xs-6.col-sm-6.col-md-6
+        .form-group
+          label
+            | Fecha Inicio Oferta 
+          = f.text_field :offer_start_date, class:"form-control date"
+      .col-xs-6.col-sm-6.col-md-6
+        .form-group
+          label
+            | Fecha Fin Oferta 
+          = f.text_field :offer_finish_date, class:"form-control date"
+    .row
+      .col-xs-4.col-sm-4.col-md-4
+        .form-group
+          label
+            | Contenedor
+          = f.check_box :container, :class=>"group_checked"
+      .col-xs-4.col-sm-4.col-md-4
+        .form-group
+          label
+            | Carga General
+          = f.check_box :general_load, :class=>"group_checked"
+      .col-xs-4.col-sm-4.col-md-4
+        .form-group
+          label
+            | Carga Liquida
+          = f.check_box :liquid_load, :class=>"group_checked"
+    .form-group
+      label
+        | Observaciones
+      br
+      = f.text_area :observation, :rows => "4" , :cols => "2" , :class => "textare_w100"
+    = f.submit :class =>"btn btn-primary btn-block"

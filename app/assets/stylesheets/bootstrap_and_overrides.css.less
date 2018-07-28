@@ -1,0 +1,237 @@
+@import "twitter/bootstrap/bootstrap";
+
+
+@bgDefault      : #7d5da2;
+@bgHighlight    : #b29ec8;
+@colDefault     : #ffffff;
+@colHighlight   : #ffffff;
+@dropDown       : false;
+.ddm() when (@dropDown) {
+  > .dropdown-menu {
+    background-color: @bgDefault;
+    > li > a {
+      color: @colDefault;
+      &:hover,  &:focus {
+        color: @colHighlight;
+        background-color: @bgHighlight; }}
+    .divider {
+      background-color: @bgHighlight;}}}
+.navbar-default {
+  background-color: @bgDefault;
+  border-color: @bgHighlight;
+  .navbar-brand {
+    color: @colDefault;
+    &:hover, &:focus { 
+      color: @colHighlight; }}
+  .navbar-text {
+    color: @colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: @colDefault;
+        &:hover,  &:focus {
+          color: @colHighlight; }}
+      .ddm }
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: @colHighlight;
+        background-color: @bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: @colHighlight;
+        background-color: @bgHighlight; }}}
+  .navbar-toggle {
+    border-color: @bgHighlight;
+    &:hover, &:focus {
+      background-color: @bgHighlight; }
+    .icon-bar {
+      background-color: @colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: @colDefault; }
+  .navbar-link {
+    color: @colDefault;
+    &:hover {
+      color: @colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: @colDefault;
+      &:hover, &:focus {
+        color: @colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: @colHighlight;
+        background-color: @bgHighlight; }}}
+}
+
+body { 
+	padding-top: 80px; 
+}
+
+.btn {
+	color: #fff !important;
+    border: medium none;
+    border-radius: 4px;
+    font-weight: 300;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.btn-primary {
+    background-color: #644988;
+    border-color: #7D5DA2;
+    color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background-color: #B29EC8;
+    border-color: #7D5DA2;
+    background-image: -moz-linear-gradient(left bottom , rgba(159, 88, 150, 0) 0%, rgba(159, 88, 150, 0.6) 100%);
+    color: #ffffff;
+}
+
+.form-control:focus {
+    border-color: #B29EC8;
+    box-shadow: none !important;
+    outline: 0 none;
+}
+
+td, th {
+    text-align: center;
+}
+
+a {
+    color: #7D5DA2;
+}
+
+a:hover {
+    color: #B29EC8;
+}
+
+.shortcuts {
+    font-size: 4em !important;
+}
+.fa.fa-filter {
+    margin-right: 10px;
+}
+
+.fa.fa-pencil {
+    margin-left: 8px;
+    margin-right: 10px;
+}
+
+.fa.fa-trash-o.delete:hover {
+    color: red;
+}
+
+.pagination > li > a, .pagination > li > span {
+  color: #B29EC8;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #B29EC8;
+    border-color: #7D5DA2;
+}
+
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
+    background-color: #B29EC8;
+    border-color: #7D5DA2;
+    color: #fff;
+}
+
+.panel-royal > .panel-heading {
+    background-color: #ED5564;
+    border-color: #ED5564;
+    color: #ffffff;
+}
+.textare_w100 {
+    width: 100%;
+}
+
+.w120{
+     width: 290px !important;
+}
+.w900{
+     width: 1000px !important;
+}
+.w90{
+   width: 90px !important;
+}
+.label.label-success {
+    float: right;
+    margin-top: 2px;
+}
+.btn.btn-link.eye{
+    color: purple !important;
+}
+
+.panel-primary > .panel-heading {
+    background-color: #576F95 ;
+    border-color: #576F95 ;
+    color: #ffffff;
+}
+
+.panel-primary {
+    border-color: #576F95;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  vertical-align: middle;
+  }
+.table-layout {
+    display: table;
+    margin-bottom: 20px;
+    padding: 0;
+    table-layout: fixed;
+    width: 100%;
+}
+.valign-top {
+    vertical-align: top !important;
+}
+
+#table-email{
+  border: 1px solid #ddd;
+}
+.table-email > tbody > tr > td.meta > .sender {
+    color: #5e5e5e;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+}
+.table-email > tbody > tr > td.message > .heading {
+    font-size: 13px;
+    float: left;
+}
+.table-email > tbody > tr > td.meta > .sender {
+    color: #5e5e5e;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+}
+.table-email > tbody > tr > td.meta > .date {
+    color: #aaaaaa;
+    font-size: 12px;
+    margin: 8px;
+    text-align: left;
+}
+
+.meta{
+   padding: 15px;
+}
+.is-countdown{
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.dude {
+    font-size: 17px;
+}
+
+#comments_quantity {
+    margin-top: 13px;
+}
+
+#errmsg, #errmsg1{
+  color: red;
+}

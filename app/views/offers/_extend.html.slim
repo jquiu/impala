@@ -1,0 +1,19 @@
+#myModal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close[type="button" data-dismiss="modal" aria-label="Close"]
+          span[aria-hidden="true"]
+            | ×
+        h4#myModalLabel.modal-title
+          | Extender Oferta
+      .modal-body
+        = form_for :offer , url: extend_path(id: @offer.id), :id => @offer.id  do |f|
+          label[for="product_Referencia"]
+            | Fecha de Servicio de oferta
+          = f.text_field :service_finish_date, :class =>"date form-control"
+          label[for="product_Nombre"]
+            | Fecha de oferta
+          = f.text_field :offer_finish_date, :class =>"date form-control"
+          br
+          = f.submit :class =>"btn btn-primary btn-block"

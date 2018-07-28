@@ -1,0 +1,16 @@
+	<%if @offer.errors.any? %>
+	$('.errors').append('<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <%= @offer.errors.full_messages.to_sentence%></div>');
+	<%else%>
+	$('.errors').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong> Se ha creado su nueva ubicación </strong></div>');
+	$('#offer_volumen').val(" ")
+	$('#offer_service_start_date').val(" ")
+	$('#offer_service_finish_date').val(" ")
+	$('#offer_offer_finish_date').val(" ")
+	$('#offer_offer_start_date').val(" ")
+	$('#offer_price').val(" ")
+	$('#offer_observations').val(" ")
+	$('#offer_load_compensation').prop( "checked", false );
+	$('#offer_container').prop( "checked", false );
+	$('#offer_general_load').prop( "checked", false );
+	$('#offer_liquid_load').prop( "checked", false );
+	<%end%

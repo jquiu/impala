@@ -1,0 +1,122 @@
+javascript:
+  date = "#{@offer.offer_finish_date }";
+  
+coffee:
+  $(document).ready ->
+    offer_finish_date = date
+    $ ->
+      untilDay = new Date(offer_finish_date)
+      untilDay.setHours(untilDay.getHours() + 5)
+      $('.defaultCountdown').countdown until: untilDay
+      return
+
+.page-header
+  ol.breadcrumb
+    li.active
+      i.fa.fa-truck style="margin-right: 10px;"
+      = t('.head')
+.row
+  .col-xs-12
+  - if @offer.offer_finish_date < Time.now
+      - @offer.update(:status => 2)
+  - else
+      .defaultCountdown
+      br
+      br
+hr
+- if current_user.rol == "admin" or current_user.rol == "supervicer"
+  = render(partial: 'offers/offer_users')
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3
+          strong
+            |  Código de oferta
+            = "  #{@offer.id}"
+      .panel-body
+        - if current_user.rol == "admin" or current_user.rol == "supervicer"
+          .row
+            .col-lg-3
+              p
+                a.btn.btn-outlined.btn-block.btn-success[href="#" data-toggle="modal" data-target="#myModal"]
+                  = t('.extend')
+            .col-lg-3
+              p
+                = link_to(t('.edit'), edit_offer_path(@offer), html_options = {:class => "btn btn-outlined btn-block btn-info"})
+            .col-lg-3
+              = button_to statuts(@offer.status), { :controller => "offers", :action => "change_status", :id => @offer.id, :method => :put}, html_options = {:class => "btn btn-outlined btn-block  btn_white btn-warning"}
+            .col-lg-3
+              p
+                = link_to(t('.delete'), @offer, html_options = {:class => "btn btn_white btn-outlined btn-block btn-danger", data: {:confirm => t('.data_delete')}, :method => :delete} )
+          hr
+        .row
+          .row
+            .col-lg-12
+              .col-lg-3
+                span.bold
+                  = t('.product')
+                p
+                  = @offer.product
+              .col-lg-3
+                span.bold
+                  = t('.volumen')
+                p
+                  = "#{number_with_delimiter(@offer.volumen, :delimiter => '.')} #{@offer.unit}"
+              .col-lg-3
+                span.bold
+                  = t('.origins')
+                p
+                  = @offer.origins
+              .col-lg-3
+                span.bold
+                  = t('.destination')
+                p
+                  = @offer.destination
+            .col-lg-12
+              .col-lg-3
+                span.bold
+                  = t('.type')
+                - if @offer.liquid_load
+                  =  t('.liquid_load')
+                - elsif @offer.general_load
+                  =  t('.general_load')
+                - elsif @offer.container
+                  =  t('.container')
+              .col-lg-3
+                span.bold
+                - if @offer.load_compensation
+                  =  t('.load_compensation')
+            .col-lg-12
+              br
+              .col-lg-3
+                span.bold
+                  = t('.offer_start_date')
+                p
+                  = @offer.offer_start_date
+              .col-lg-3
+                span.bold
+                  = t('.offer_finish_date')
+                p
+                  = @offer.offer_finish_date
+              .col-lg-3
+                span.bold
+                  = t('.service_start_date')
+                p
+                  = @offer.service_start_date
+              .col-lg-3
+                span.bold
+                  = t('.service_finish_date')
+                p
+                  = @offer.service_finish_date
+              br
+          .col-lg-12
+            span.bold
+              = t('.observations')
+            p
+              = @offer.observation
+- if current_user.rol == "admin" or current_user.rol == "supervicer"
+  = render(partial: 'offers/extend')
+- else
+  = render(partial: 'offers/offer_user')
+

@@ -1,0 +1,11 @@
+.errors
+= form_for @comment do |f|
+    = f.label :Asunto
+    = f.text_field :subject, :class =>"form-control"
+    br
+    = f.label :commentario
+    = f.text_field :description, :class =>"form-control"
+    br
+    = f.hidden_field :offer_id, :value =>params[:id],  :class =>"form-control"
+    = f.hidden_field :user_id, :value => current_user.id ,:class =>"form-control"
+    =f.submit :class =>"btn btn-primary btn-block"

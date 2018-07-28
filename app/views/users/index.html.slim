@@ -1,0 +1,38 @@
+- model_class = User
+.page-header
+  ol.breadcrumb
+    li.active
+      i.fa.fa-user style="margin-right: 10px;"
+      | LISTADO DE  USUARIOS
+= render(partial: 'users/filters')
+br
+br
+table.table.table-striped.table-hover.table-bordered
+  thead
+    tr
+      th=  sort_link @search, :id, "#"
+      th=  sort_link @search, :name, t('.name')
+      th=  sort_link @search, :username, t('.username')
+      th=  sort_link @search, :email, t('.email')
+      th=  sort_link @search, :carrier, t('.carrier')
+      th=  sort_link @search, :landline, t('.landline')
+      th=  sort_link @search, :cell_phone, t('.cell_phone')
+      
+      th=t '.actions', :default => t("helpers.actions")
+      
+  tbody
+    - @users.each do |user|
+      tr
+        td= user.id
+        td= link_to user.name, user_path(user)
+        td= user.username
+        td= user.email
+        td= user.carrier
+        td= user.landline
+        td= user.cell_phone
+        td
+          =  link_to user, data: {:confirm => "Eliminar usuario"}, :method => :delete do
+              span.fa.fa-trash-o.delete
+
+= will_paginate @users, :locals => { :users => @users }, renderer: BootstrapPagination::Rails
+

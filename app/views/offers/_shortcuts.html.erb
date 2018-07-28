@@ -1,0 +1,90 @@
+<div class="row">
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-users shortcuts"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge"><%= User.all.count%></div>
+						<div><%= t('.provider')%></div>
+					</div>
+				</div>
+			</div>
+			<a href="#">
+				<div class="panel-footer">
+					<i class="pull-left"><a href="<%= new_user_path%>"><%= t('.add_provider')%></a></i>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-cubes shortcuts"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge"><%= Measure.all.count%></div>
+						<div><%= t('.measures')%></div>
+					</div>
+				</div>
+			</div>
+			<a href="#">
+				<div class="panel-footer">
+					<i class="pull-left"><a href="#" data-toggle="modal" data-target="#myModalmeasure"><%= t('.add_measure')%></a></i>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-bookmark shortcuts"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge"><%= Product.all.count%></div>
+						<div><%= t('.products')%></div>
+					</div>
+				</div>
+			</div>
+			<a href="#">
+				<div class="panel-footer">
+					<i class="pull-left"><a href="#" data-toggle="modal" data-target="#myModalProducto"><%= t('.add_product')%></a></i>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-location-arrow shortcuts"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge"><%= Location.all.count%></div>
+						<div><%= t('.locations')%></div>
+					</div>
+				</div>
+			</div>
+			<a href="#">
+				<div class="panel-footer">
+					<i class="pull-left"><a href="#" data-toggle="modal" data-target="#myModalLocation"><%= t('.add_location')%></a></i>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

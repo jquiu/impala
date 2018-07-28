@@ -1,0 +1,60 @@
+<div class="page-header">
+<ol class="breadcrumb">
+    <li class="active">
+        <i style="margin-right: 10px;" class="fa fa-envelope-o"></i>Commentarios
+    </li>
+
+</ol>
+</div>
+<div class="row">
+    <div class="col-lg-3 valign-top">
+        <!-- panel body -->
+        <div class="panel-body" style="padding: 0px;">
+            <!-- Browse -->
+            <h5 class="semibold">Principal</h5>
+            <div class="list-group">
+                <a class="list-group-item" href=""><i class="fa fa-inbox"></i> Recibidos <span class="semibold text-muted pull-right"><%= @comments.count%></span></a>
+            </div>
+        </div>
+        <hr>
+        <!--/ panel body -->
+    </div>
+    <div class="col-lg-9">
+        <!-- panel body -->
+        <div class="panel-body">
+            <!-- email list -->
+            <div class="table-responsive nm">
+                <table id="table-email" class="table table-striped table-hover table-email">
+                    <tbody>
+                        <% @comments.each do |comment|%>
+                            <tr class="commentario">
+                                <td>
+                                    <input type="checkbox" data-target="tr" data-toggle="selectrow" value="1" id="customcheckbox1">  
+                                </td>
+                                <td class="meta">
+                                    <h5 class="sender"><%= comment.user.name%></h5>
+                                    <p class="date"><%= comment.created_at.strftime("%m/%d/%Y")%></p>
+                                </td>
+                                <td class="message">
+                                    <h5 class="heading">
+                                        <i class="ico-square text-danger mr5"></i> 
+                                        <i class="ico-attachment text-muted mr5"></i>
+                                        <a href="<%= comment_path(comment)%>"><%= comment.subject%></a>
+                                        <%if comment.status == 1%>     
+                                            <span class="label label-info" style="margin-top: 10p2x;">Nuevo</span>
+                                        <%end%>
+                                    </h5><br><br>
+                                    <p class="text" style="float: left;"><%= comment.description%></p>
+                                </td>
+                            </tr>
+                        <%end%>
+                    </tbody>
+                </table>
+                <%= will_paginate @comments, :locals => { :comments => @comments }, renderer: BootstrapPagination::Rails%>
+            </div>
+                <!--/ email list -->
+        </div>
+    </div>
+        <!--/ panel body -->
+</div>
+

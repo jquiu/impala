@@ -1,0 +1,48 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3
+          | Clasificación de ofertantes
+        / .row
+        /   .col-md-12.pull-right
+        /     -if current_user.rol == "admin"
+        /       = link_to "Descargar Excel", offers_download_path(format: "xls", :id => params[:id]), :class => "btn btn-success "
+      .panel-body
+        .row
+          .col-md-12
+            table#dev-table.table.table-hover
+              thead
+                tr
+                  th
+                    = t('.id')
+                  th
+                    = t('.name')
+                  th
+                    = t('.carrier')
+                  th
+                    = sort_link @search, :volumen, t('.volumen')
+                  th
+                    = sort_link @search, :price, t('.price')
+                  th
+                    = t('.cell_phone')
+                  th
+                    = t('.landline')
+              tbody
+                - @offer_users.each do |offer_user|
+                  tr
+                    td
+                      = offer_user.id
+                    td
+                      = offer_user.user.name
+                    td
+                      = offer_user.user.carrier
+                    td
+                      = number_with_delimiter(offer_user.quantity, :delimiter => '.') 
+                    td
+                      = " $#{number_with_delimiter(offer_user.price, :delimiter => '.')}"
+                    td
+                      = offer_user.user.landline
+                    td
+                      = offer_user.user.cell_phone
+            = will_paginate @offer_users, :locals => { :offer_users => @offer_users }, renderer: BootstrapPagination::Rails

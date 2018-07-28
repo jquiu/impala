@@ -1,0 +1,19 @@
+<div id="fullscreen_bg" class="fullscreen_bg"/>
+<div class="container">
+    <h1 class="form-signin-heading">INGRESAR</h1>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-signin'} ) do |f| %>
+        <div class="form-group">
+          <%= f.label :Nombre_Usuario, :class => "btn_white"%><br/>
+          <%= f.text_field :login, autofocus: true ,:placeholder =>"Ingresar nombre usuario"  ,:class =>"form-control"%>
+        </div>
+        <div class="form-group">
+          <%= f.label :contraseña, :class => "btn_white"%><br/>
+          <%= f.password_field :password,:placeholder =>"Ingresar contraseña"  ,:class =>"form-control"%>
+        </div>
+        <br>
+        <%= link_to "¿Olvido su contraseña?", new_password_path(resource_name) , :class => " form-signin-heading btn_white"%><br />
+        <br>
+        <%= f.submit "INGRESAR" , :class =>"btn btn-lg btn-primary btn-block"%>
+    <%end%>
+
+</div>

@@ -1,0 +1,64 @@
+- model_class = Offer
+- if current_user.rol == "admin" or current_user.rol == "supervicer" 
+  = render(partial: 'shortcuts')
+.page-header
+  ol.breadcrumb
+    li.active
+      i.fa.fa-truck style="margin-right: 10px;"
+      | LISTADO DE OFERTAS
+= render(partial: 'offers/filters')
+-if current_user.rol == "admin"
+  = link_to "Descargar Excel", offers_path(format: "xls"), :class => "btn btn-success"
+  br
+  br
+table.table.table-striped.table-hover.table-bordered
+  thead
+    tr
+      th= sort_link @search, :id, t('.id')
+      th= sort_link @search, :product, t('.product')
+      th= sort_link @search, :origins, t('.origins')
+      th= sort_link @search, :destination, t('.destination')
+      th= sort_link @search, :volumen,t('.volumen')
+      th= sort_link @search, :price,t('.price')
+      th= sort_link @search, :service_start_date, t('.service_start_date')
+      th= sort_link @search, :service_finish_date, t('.service_finish_date')
+      th= sort_link @search, :offer_start_date, t('.offer_start_date')
+      th= sort_link @search, :offer_finish_date, t('.offer_finish_date')
+      th
+      - if current_user.rol == "admin" or current_user.rol == "supervicer" 
+        th=t '.actions', :default => t("helpers.actions")
+  tbody
+    - @offers.each do |offer|
+      tr class=('danger' if offer.status == 2)
+        td.w120
+          - if current_user.rol == "admin"
+            span.label.label-success
+              = user_count(offer)
+          = offer.id
+        td= offer.product
+        td= offer.origins
+        td= offer.destination
+        td.w900= "#{number_with_delimiter(offer.volumen, :delimiter => '.')} #{offer.unit}"
+        td.w120= number_to_currency_br(offer.price)
+        td= offer.service_start_date
+        td= offer.service_finish_date 
+        td= offer.offer_start_date
+        td= offer.offer_finish_date
+        td= link_to "ver oferta", offer_path(offer)
+        - if current_user.rol == "admin" or current_user.rol == "supervicer" 
+          td.w120
+            = link_to edit_offer_path(offer)
+                  span.fa.fa-pencil
+            '
+            = link_to offer, data: {:confirm => t('.delete')}, :method => :delete do
+                span.fa.fa-trash-o
+
+            button.btn.btn-link.eye data-toggle="modal" data-target="#myModal#{offer.id}" 
+                  span.fa.fa-eye
+            = render(partial: 'offers/modal',locals: { offer: offer })
+
+= will_paginate @offers, :locals => { :offers => @offers }, renderer: BootstrapPagination::Rails
+
+= render(partial: 'products/modal')
+= render(partial: 'measures/modal')
+= render(partial: 'locations/modal')

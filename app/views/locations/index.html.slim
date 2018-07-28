@@ -1,0 +1,28 @@
+- model_class = Location
+.page-header
+  ol.breadcrumb
+    li.active
+      i.fa.fa-location-arrow style="margin-right: 10px;"
+      | LISTADO DE UBICACIONES
+= render(partial: 'locations/filters')
+br
+br
+table.table.table-striped.table-hover.table-bordered
+  thead
+    tr
+      th=  sort_link @search, :id, "#"
+      th=  sort_link @search, :location, t('.location')
+      th=t '.actions', :default => t("helpers.actions")
+  tbody
+    - @locations.each do |location|
+      tr
+        td= location.id
+        td= location.location
+        td
+          = link_to edit_location_path(location)
+              span.fa.fa-pencil
+          =  link_to location, data: {:confirm => "Eliminar Ubicación"}, :method => :delete do
+              span.fa.fa-trash-o.delete
+
+= will_paginate @locations, :locals => { :locations => @locations }, renderer: BootstrapPagination::Rails
+

@@ -1,0 +1,6 @@
+.errors
+= form_for @measure,  remote: true do |f|
+    = f.label :Unidad_De_Medida
+    = f.text_field :unit, :class =>"form-control"
+    br
+    =f.submit :class =>"btn btn-primary btn-block"

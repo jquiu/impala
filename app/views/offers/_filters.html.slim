@@ -1,0 +1,61 @@
+#filter-panel.collapse.filter-panel
+  .panel.panel-default
+    .panel-body
+      = search_form_for @search do |f|
+        .col-md-12
+          label
+            = t('.offert_type')
+          = f.select :offert_type_cont, [["Tipo Oferta 1", "oferta1"],["Tipo Oferta 2", "oferta2"]], {prompt: "Seleccione Tipo Oferta"}, {class: "form-control"}
+        .col-md-3
+          label
+            = t('.product')
+          = f.collection_select :product_cont, Product.all, :name, :name, {prompt: " "}, {class: "form-control"}
+        .col-md-3
+          label
+            = t('.origins')
+          = f.collection_select :origins_cont, Location.all, :location, :location, {prompt: " "}, {class: "form-control"}
+        .col-md-3
+          label
+            = t('.destination')
+          = f.collection_select :destination_cont, Location.all, :location, :location, {prompt: " "}, {class: "form-control"}
+        .col-md-3
+          label
+            = t('.volumen')
+          = f.search_field(:volumen_cont, class: 'form-control')
+        .col-md-3
+          label
+            = t('.price')
+          = f.search_field(:price_cont, class: 'form-control')
+        .col-md-3
+          label
+            = t('.service_start_date')
+          = f.search_field(:service_start_date_cont, class: 'form-control date')
+        .col-md-3
+          label
+            = t('.service_finish_date')
+          = f.search_field(:service_finish_date_cont, class: 'form-control date')
+        .col-md-3
+          label
+            = t('.offer_start_date')
+          = f.search_field(:offer_start_date_cont, class: 'form-control date')
+        .col-md-3
+          label
+            = t('.offer_finish_date')
+          = f.search_field(:offer_finish_date_cont, class: 'form-control date')
+        .col-md-3
+          br
+          = f.submit :class =>"btn btn btn-primary btn-block"
+        .col-md-3
+          br
+          = link_to t('.clear'), request.path, class:"btn btn-danger btn_white btn-block"
+
+.row 
+  .col-md-6
+    button.btn.btn-primary[type="button" data-toggle="collapse" data-target="#filter-panel" style="margin-bottom: 10px;"]
+      span.fa.fa-filter
+      = t('.filters')
+  - if current_user.rol == "admin" or current_user.rol == "supervicer" 
+    .col-md-6
+      .pull-right
+        = link_to new_offer_path, :class => 'btn btn-primary'
+          span.fa.fa-plus-circle

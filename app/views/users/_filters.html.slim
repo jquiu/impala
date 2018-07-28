@@ -1,0 +1,42 @@
+#filter-panel.collapse.filter-panel
+  .panel.panel-default
+    .panel-body
+      = search_form_for @search do |f|
+        .col-md-12
+          label
+            = t('.rol')
+          = f.select :rol_cont, [["Proveedores", "providers"],["Supervisor", "supervicer"]], {prompt: "Seleccione Tipo usuario"}, {class: "form-control"}
+          br
+        .col-md-3
+          label
+            = t('.name')
+          = f.search_field(:name_cont, class: 'form-control')
+        .col-md-3
+          label
+            = t('.username')
+          = f.search_field(:username_cont, class: 'form-control')
+        .col-md-3
+          label
+            = t('.email')
+          = f.search_field(:email_cont, class: 'form-control')
+        .col-md-3
+          label
+            = t('.carrier')
+          = f.search_field(:carrier_cont, class: 'form-control')
+        .col-md-3
+          br
+          = f.submit :class =>"btn btn btn-primary btn-block"
+        .col-md-3
+          br
+          = link_to t('.clear'), request.path, class:"btn btn-danger btn_white btn-block"
+
+.row 
+  .col-md-6
+    button.btn.btn-primary[type="button" data-toggle="collapse" data-target="#filter-panel" style="margin-bottom: 10px;"]
+      span.fa.fa-filter
+      = t('.filters')
+  .col-md-6
+    .pull-right
+      = link_to new_user_path, :class => 'btn btn-primary'
+        span.fa.fa-plus-circle
+    
