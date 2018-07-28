@@ -15,7 +15,7 @@ module ImpalaApp
     # set locales
     config.i18n.default_locale = :es
     config.i18n.available_locales = [:es]
-
+    config.encoding = "utf-8"
     config.assets.precompile += [/^[a-z0-9]\w+\.(css|js)$/]
     config.assets.precompile.shift
     # Explicitly register the extensions we are interested in compiling

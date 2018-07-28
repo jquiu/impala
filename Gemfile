@@ -26,7 +26,7 @@ gem 'jquery-countdown-rails'
 gem 'formtastic'
 gem 'ransack'
 gem "font-awesome-rails"
-gem 'pg'
+gem 'pg', '~> 0.20'
 gem "capistrano"
 gem "capistrano3-puma"
 gem "capistrano-rails", require: false
